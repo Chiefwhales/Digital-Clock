@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stealth Pink Clock</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="script.js" defer></script>
+
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+
+      /* Blinking Colon Animation */
+      @keyframes soft-blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.1;
+        }
+      }
+      .pulse {
+        animation: soft-blink 1.5s infinite;
+      }
+
+      /* Custom Gradients */
+      .bg-slate-light {
+        background: linear-gradient(135deg, #f8fafc 0%, #cbd5e1 100%);
+      }
+      .bg-slate-dark {
+        background: linear-gradient(135deg, #020617 0%, #0f172a 100%);
+      }
+
+      /* Popup Bounce */
+      @keyframes bounce-short {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .animate-bounce-short {
+        animation: bounce-short 2s ease-in-out infinite;
+      }
+    </style>
+  </head>
+  <body
+    id="body"
+    class="bg-slate-light min-h-screen flex items-center justify-center transition-all duration-700"
+  >
+    <div
+      id="clock-card"
+      class="bg-white/80 backdrop-blur-md border border-slate-300 p-10 rounded-[2.5rem] shadow-2xl text-center max-w-lg w-full mx-4 transition-all duration-700"
+    >
+      <p
+        id="label"
+        class="text-slate-500 uppercase tracking-[0.4em] text-[10px] font-black mb-4"
+      >
+        My Digital Clock
+      </p>
+
+      <h1
+        id="clock-display"
+        class="text-7xl md:text-8xl font-black text-pink-600 tracking-tighter mb-10 drop-shadow-md"
+      >
+        00:00:00
+      </h1>
+
+      <div class="mb-6 px-4">
+        <label
+          class="block text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 text-center"
+          >Set Alarm Time</label
+        >
+        <input
+          type="time"
+          id="alarm-input"
+          class="w-full bg-slate-100 border-none rounded-xl py-3 px-4 text-center font-bold text-slate-900 focus:ring-2 focus:ring-pink-500 outline-none transition-all"
+        />
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <button
+          id="format-btn"
+          class="w-full py-4 bg-black hover:bg-slate-800 text-white rounded-2xl shadow-xl transition-all active:scale-95 font-black uppercase tracking-widest text-xs"
+        >
+          Switch Format (12/24h)
+        </button>
+        <button
+          id="theme-btn"
+          class="w-full py-4 bg-slate-200 hover:bg-slate-300 text-slate-900 rounded-2xl transition-all active:scale-95 font-bold text-xs uppercase tracking-widest"
+        >
+          Toggle Mood
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="alarm-modal"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm hidden"
+    >
+      <div
+        class="bg-white p-8 rounded-[2rem] shadow-2xl text-center max-w-sm w-full mx-4 border-4 border-pink-500 animate-bounce-short"
+      >
+        <div class="text-6xl mb-4">⏰</div>
+        <h2
+          class="text-2xl font-black text-slate-900 uppercase tracking-tight mb-2"
+        >
+          ALARRRRRRRRMM!
+        </h2>
+        <p id="alarm-time-display" class="text-pink-600 font-bold text-lg mb-6">
+          00:00
+        </p>
+        <button
+          id="close-alarm"
+          class="w-full py-4 bg-black text-white rounded-xl font-black uppercase tracking-widest hover:bg-pink-600 transition-colors"
+        >
+          STOP
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
